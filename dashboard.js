@@ -12,7 +12,8 @@ onAuthStateChanged(auth, async (user) => {
     // Load Firestore user profile using global function from auth.js
     const userData = await window.getUserData(user.uid);
 
-    if (userData) {
+    // ✅ UPDATED: Check for userData AND userData.name
+    if (userData && userData.name) {
         document.getElementById('userGreeting').textContent = `Hi, ${userData.name} 👋`;
     } else {
         document.getElementById('userGreeting').textContent = "Hi, User 👋";
