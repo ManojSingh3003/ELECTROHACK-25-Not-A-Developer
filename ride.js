@@ -30,7 +30,8 @@ onAuthStateChanged(auth, async (user) => {
             currentUserData = await window.getUserData(user.uid);
         }
 
-        if (currentUserData) {
+        // ✅ UPDATED: Check for currentUserData AND currentUserData.name
+        if (currentUserData && currentUserData.name) {
             document.getElementById('userName').textContent = currentUserData.name;
         } else {
             document.getElementById('userName').textContent = "User";
@@ -99,7 +100,6 @@ document.getElementById('rideForm').addEventListener('submit', async (e) => {
         alert("Ride shared successfully");
         setTimeout(loadRides, 500); 
     } catch (error) {
-        console.error("Error sharing ride:", error);
         alert("Failed to share ride: " + error.message);
     }
 });
@@ -238,7 +238,6 @@ async function loadRides() {
             ridesFeed.innerHTML = newFeedHTML.join('');
         }
     } catch (err) {
-        console.error("Error loading rides:", err);
         ridesFeed.innerHTML = `<p class="text-center text-red-500">Error loading rides.</p>`;
     }
 }
@@ -294,7 +293,6 @@ window.joinRide = async function (rideId) {
         alert("Successfully joined the ride!");
         loadRides(); 
     } catch (error) {
-        console.error("Join error:", error);
         alert("Error joining ride: " + error.message);
     }
 };
@@ -340,7 +338,6 @@ window.leaveRidePassenger = async function (rideId) {
         loadRides();
 
     } catch (error) {
-        console.error("Error leaving ride:", error);
         alert("Error leaving ride: " + error.message);
     }
 };
@@ -397,7 +394,6 @@ window.leaveRideOwner = async function (rideId) {
         loadRides();
 
     } catch (error) {
-        console.error("Error leaving ride as owner:", error);
         alert("Error: " + error.message);
     }
 };
@@ -433,7 +429,6 @@ window.deleteRide = async function (rideId) {
             alert("Error: Ride not found.");
         }
     } catch (error) {
-        console.error("Error deleting ride:", error);
         alert("Error deleting ride: " + error.message);
     }
 };
