@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Wheel2gether - Food Sharing</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'slide-in': 'slideIn 0.3s ease-out',
+                    },
+                    keyframes: {
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    colors: {
+                        'deep-slate': '#1e293b',
+                        'dusty-blue': '#6495ED',
+                        'soft-coral': '#FF7F50', // Primary food accent
+                        'light-sky': '#E6F0FF', 
+                        'pale-blue': '#F0F8FF', 
+                        'crystal-blue': '#D9E6FF', 
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for aesthetic feed */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 127, 80, 0.5); /* Semi-transparent soft-coral */
+            border-radius: 10px;
+        }
+    </style>
+    </head>
+<body class="bg-gradient-to-br from-red-100 via-pink-100 to-orange-200 min-h-screen">
+    <nav class="bg-white/95 backdrop-blur-md shadow-xl p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="dashboard.html" class="flex items-center space-x-3 hover:scale-[1.02] transition-transform">
+                <i class="fas fa-arrow-left text-deep-slate text-xl"></i> 
+                <div>
+                    <img src="logo.png" alt="Wheel2gether Logo" class="h-16 w-auto">
+                </div>
+                <span class="text-2xl font-extrabold drop-shadow-sm uppercase">
+                    <span class="text-deep-slate -mr-1">WHEEL</span>
+                    <span class="text-soft-coral -mx-0.5">2</span>
+                    <span class="text-deep-slate -ml-1">GETHER</span>
+                </span>
+            </a>
+            <div class="flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-full">
+                <i class="fas fa-user-circle text-gray-600"></i>
+                <span class="text-gray-700 font-semibold" id="userName">User</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="inline-block p-4 bg-gradient-to-br from-soft-coral to-pink-400 rounded-2xl mb-4 shadow-xl">
+                    <h1 class="text-5xl text-white">🍕</h1>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 drop-shadow-sm">Share Your Food Order</h1>
+                <p class="text-gray-600 text-lg font-medium">Group order from restaurants and split the delivery cost!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-3xl p-6 shadow-2xl border-2 border-soft-coral/30">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-gradient-to-br from-soft-coral to-pink-400 rounded-xl mr-3 shadow-md">
+                            <i class="fas fa-utensils text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-deep-slate">Order Details</h2>
+                    </div>
+                    <form id="foodForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                <i class="fas fa-store text-soft-coral mr-2"></i>Restaurant Name
+                            </label>
+                            <input type="text" id="restaurant" required
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200 placeholder-gray-400"
+                                placeholder="e.g., Domino's Pizza">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                <i class="fas fa-utensils text-soft-coral mr-2"></i>Items to Order
+                            </label>
+                            <textarea id="items" required rows="3"
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200 placeholder-gray-400 resize-none"
+                                placeholder="e.g., 2x Margherita Pizza, 1x Garlic Bread"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    <i class="fas fa-clock text-gray-500 mr-2"></i>Delivery Time
+                                </label>
+                                <input type="time" id="deliveryTime" required
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    <i class="fas fa-calendar text-gray-500 mr-2"></i>Date
+                                </label>
+                                <input type="date" id="date" required
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                <i class="fas fa-map-marker-alt text-soft-coral mr-2"></i>Delivery Location
+                            </label>
+                            <input type="text" id="location" required
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200 placeholder-gray-400"
+                                placeholder="e.g., Hostel Block A">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                <i class="fas fa-users text-soft-coral mr-2"></i>Max People (Optional)
+                            </label>
+                            <input type="number" id="maxPeople" min="2" max="20"
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200 placeholder-gray-400"
+                                placeholder="Maximum people to join">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                <i class="fas fa-rupee-sign text-green-600 mr-2"></i>Delivery Charge (Total)
+                            </label>
+                            <input type="number" id="deliveryCharge" required min="1"
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200 placeholder-gray-400"
+                                placeholder="Total delivery charge in ₹">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                <i class="fas fa-comment text-gray-500 mr-2"></i>Additional Notes (Optional)
+                            </label>
+                            <textarea id="notes" rows="2"
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-soft-coral focus:border-soft-coral transition-all duration-200 placeholder-gray-400 resize-none"
+                                placeholder="Any additional information..."></textarea>
+                        </div>
+                        <button type="submit" 
+                            class="w-full bg-gradient-to-r from-soft-coral to-pink-600 text-white py-3 px-4 rounded-xl hover:from-pink-600 hover:to-soft-coral transform hover:scale-105 transition-all duration-200 font-bold text-lg shadow-lg">
+                            <i class="fas fa-paper-plane mr-2"></i>Share Order
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 shadow-2xl border-2 border-soft-coral/30">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-gradient-to-br from-soft-coral to-pink-400 rounded-xl mr-3 shadow-md">
+                            <i class="fas fa-comments text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-deep-slate">Available Orders</h2>
+                    </div>
+                    <div id="foodFeed" class="space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar">
+                        <div class="text-center py-12">
+                            <i class="fas fa-pizza-slice text-gray-300 text-6xl mb-4"></i>
+                            <p class="text-gray-500 font-medium">No orders available yet. Be the first to share!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/food.js"></script>
+</body>
+</html>
