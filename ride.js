@@ -398,7 +398,7 @@ window.leaveRideOwner = async function (rideId) {
 
     } catch (error) {
         console.error("Error leaving ride as owner:", error);
-        alert("Error: "D + error.message);
+        alert("Error: " + error.message);
     }
 };
 
