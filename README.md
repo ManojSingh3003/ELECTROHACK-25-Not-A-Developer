@@ -60,11 +60,11 @@ Our platform successfully implements the core requirements of the problem statem
 
 | Login Page | Dashboard |
 | :---: | :---: |
-| <img src="D:\PROJECTS\Electrohack-25\wheel2gether\login.png" width="400"> | <img src="D:\PROJECTS\Electrohack-25\wheel2gether\dashboard.png" width="400"> |
+| <img src="login.png" width="400"> | <img src="dashboard.png" width="400"> |
 | **Share Ride (Posting & Joining)** | **Share Food (Posting & Joining)** |
-| <img src="D:\PROJECTS\Electrohack-25\wheel2gether\share_ride.png" width="400"> | <img src="D:\PROJECTS\Electrohack-25\wheel2gether\share_food.png" width="400"> |
+| <img src="share_ride.png" width="400"> | <img src="share_food.png" width="400"> |
 | **Joined Ride (Passenger View)** | **Joined Food (Posting & Joining)**|
-| <img src="D:\PROJECTS\Electrohack-25\wheel2gether\joined_ride.png" width="400"> |  <img src=".D:\PROJECTS\Electrohack-25\wheel2gether\joined_food.png" width="400">|
+| <img src="joined_ride.png" width="400"> |  <img src="joined_food.png" width="400">|
 
 ---
 
