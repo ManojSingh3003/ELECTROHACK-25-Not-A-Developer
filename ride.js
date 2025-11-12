@@ -151,7 +151,7 @@ async function loadRides() {
                 `;
             }
 
-            const costPerPerson = (ride.seats > 0) ? (ride.cost / ride.seats).toFixed(0) : ride.cost;
+            const costPerPerson = (ride.seats > 0) ? (ride.cost / (ride.seats+1).toFixed(0) : ride.cost;
 
             // --- 2. NEW BUTTON LOGIC (Host Promotion) ---
             let buttonHTML = '';
@@ -446,3 +446,4 @@ function formatDateTime(date, time) {
         return `${date} at ${time}`;
     }
 }
+
