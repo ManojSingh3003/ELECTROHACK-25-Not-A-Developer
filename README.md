@@ -72,8 +72,8 @@ Our platform successfully implements the core requirements of the problem statem
 
 * **Frontend:** [**HTML, Tailwind CSS,Javascript**]
 * **Backend:** [**Firebase Functions**]
-* **Database:** [**e.g., Firebase Firestore, Realtime Database?**]
-* **Authentication:** [**e.g., Firebase Authentication?**]
+* **Database:** [** Firebase Firestore**]
+* **Authentication:** [** Firebase Authentication?**]
 * **Hosting:** Firebase Hosting
 
 ---
