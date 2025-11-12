@@ -205,7 +205,7 @@ async function loadFoodOrders() {
 
             const joinedCount = order.joinedUsers ? order.joinedUsers.length : 0;
             const totalPeople = joinedCount + 1; // Owner + Joined
-            const chargePerPerson = (order.deliveryCharge && totalPeople > 0) ? (order.deliveryCharge / totalPeople).toFixed(2) : '0.00';
+            const chargePerPerson = (order.deliveryCharge && totalPeople > 1) ? (order.deliveryCharge / (totalPeople+1).toFixed(2) : '0.00';
             const spotsLeft = order.maxPeople ? (order.maxPeople - totalPeople) : null;
 
             const orderCard = document.createElement('div');
@@ -588,3 +588,4 @@ function formatDateTime(date, time) {
     const timeStr = dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
     return `${dateStr} at ${timeStr}`;
 }
+
